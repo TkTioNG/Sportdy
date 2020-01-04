@@ -13,6 +13,9 @@
     <string name="settings">Settings</string>
     <string name="about_us">About Us</string>
     <string name="help">Help</string>
+    <string name="host">Host</string>
+    <string name="venue">Venue :</string>
+    <string name="more">MORE</string>
     <string name="nav_drawer_open">Navigation Drawer Open</string>
     <string name="nav_drawer_close">Navigation Drawer Close</string>
     <string name="title_activity_navigation">NavigationActivity</string>
@@ -24,5 +27,23 @@
     <string name="action_settings">Settings</string>
     <string name="tktiong">TkTioNG</string>
     <string name="acc_img">Account Image</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="game_name">Game Name</string>
+    <string name="game_type">Game Type</string>
+    <string name="game_date">Game Date</string>
+    <string name="game_time">Game Time</string>
+    <string name="location">Location</string>
+    <string name="street1">Street 1</string>
+    <string name="street2">Street 2</string>
+    <string name="area">Area</string>
+    <string name="postcode">Postcode</string>
+    <string name="game_state">State</string>
+    <string name="maxppl">Maximum Capacity</string>
+    <string name="nowppl">Current Capacity</string>
+    <string name="description">Description</string>
+    <string name="hoster_name">Hoster Name</string>
+    <string name="user_img_desc">User Image</string>
+    <string name="hoster_img_desc">Hoster Image</string>
+    <string name="game_type_img_desc">Game Type Image</string>
 
 </resources>
