@@ -31,17 +31,19 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_history, container, false)
 
-        navController = activity!!.findNavController(R.id.mainHostFragment)
+        //navController = view.findNavController()
 
         val buttonLol = view.findViewById<Button>(R.id.buttonLOL)
         buttonLol.setOnClickListener { if (activity != null) activity!!.findViewById<ViewPager>(R.id.mainPager).currentItem = 1 }
 
-        val btnTesting = view.findViewById<Button>(R.id.btnTesting)
-        btnTesting.setOnClickListener {  }
-
-
+        //val btnTesting = view.findViewById<Button>(R.id.btnTesting)
+        //btnTesting.setOnClickListener { navController.navigate(R.id.testing_fragment) }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 

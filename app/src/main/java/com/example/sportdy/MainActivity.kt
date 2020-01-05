@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.sportdy.Chat.ChatFragment
 import com.example.sportdy.Community.CommunityFragment
 import com.example.sportdy.Friend.FriendFragment
@@ -49,9 +51,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction().replace(R.id.mainHostFragment, GameFragment()).commit()
             navView.setCheckedItem(R.id.gameFragment)
         }
-//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-//
-//        drawerLayout = binding.drawerLayout
+
+        drawerLayout = binding.drawerLayout
 //
 //        val navController = this.findNavController(R.id.mainHostFragment)
 //

@@ -74,13 +74,21 @@ class GameAdapter internal constructor(context: Context) : RecyclerView.Adapter<
         }
     }
 
-    inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvGameType: TextView = itemView.findViewById(R.id.tvGameType)
+    inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+      val tvGameType: TextView = itemView.findViewById(R.id.tvGameType)
         val tvGameDate: TextView = itemView.findViewById(R.id.tvGameDate)
         val tvGameTime: TextView = itemView.findViewById(R.id.tvGameTime)
         val tvLocation: TextView = itemView.findViewById(R.id.tvLocation)
         val tvHosterName: TextView = itemView.findViewById(R.id.tvHosterName)
         val ivGameType: ImageView = itemView.findViewById(R.id.ivGameType)
         val ivHoster: ImageView = itemView.findViewById(R.id.ivHoster)
+
+        override fun onClick(v: View?) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+    }
+
+    public interface onGameClickListener {
+        fun onGameClick(position: Int)
     }
 }

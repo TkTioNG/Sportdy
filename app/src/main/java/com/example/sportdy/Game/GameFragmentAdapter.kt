@@ -27,7 +27,7 @@ class GameFragmentAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapt
             0 -> "Find Game"
             1 -> "My Game"
             2 -> "History"
-            else -> "My Game"
+            else -> "Find Game"
         }
     }
 }

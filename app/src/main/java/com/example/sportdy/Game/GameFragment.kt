@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabLayout
 /**
  * A simple [Fragment] subclass.
  */
-class GameFragment() : Fragment() {
+class GameFragment() : Fragment(), GameAdapter.onGameClickListener {
 
     private lateinit var gameFragmentAdapter: GameFragmentAdapter
     private lateinit var viewPager: ViewPager
@@ -30,29 +30,18 @@ class GameFragment() : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_game, container, false)
 
-//        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
-
         gameFragmentAdapter = GameFragmentAdapter(childFragmentManager)
 
         viewPager = view.findViewById(R.id.mainPager)
         viewPager.adapter = gameFragmentAdapter
 
-//        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//            }
-//
-//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-//
-//            }
-//            override fun onPageSelected(position: Int) {
-//                //viewModel.onSwipe(position)
-//            }
-//        })
-
         tabLayout = view.findViewById(R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)
 
         return view
+    }
+
+    override fun onGameClick(position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
