@@ -3,6 +3,7 @@ package com.example.sportdy.Database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "SportGame")
 data class SportGame (
@@ -20,5 +21,5 @@ data class SportGame (
     @ColumnInfo(name = "maxppl") val maxppl: Int,
     @ColumnInfo(name = "nowppl") val nowppl: Int,
     @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "hosterid") val hosterID: Int
+    @ColumnInfo(name = "hosterName") val hosterName: String
 )

@@ -7,7 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.sportdy.Chat.ChatFragment
 import com.example.sportdy.Community.CommunityFragment
 import com.example.sportdy.Friend.FriendFragment
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var navView = binding.navView
         navView.setNavigationItemSelectedListener(this)
+                
 
         var toggle = ActionBarDrawerToggle(
             this,

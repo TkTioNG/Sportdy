@@ -45,5 +45,14 @@
     <string name="user_img_desc">User Image</string>
     <string name="hoster_img_desc">Hoster Image</string>
     <string name="game_type_img_desc">Game Type Image</string>
+    <string name="add_game">Add Game</string>
+    <string-array name="GameType">
+        <item>Basketball</item>
+        <item>Bowling</item>
+        <item>Cycling</item>
+        <item>Workout</item>
+        <item>Jogging</item>
+        <item>Soccer</item>
+    </string-array>
 
 </resources>

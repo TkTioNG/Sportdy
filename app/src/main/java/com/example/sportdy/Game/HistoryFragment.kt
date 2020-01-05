@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 
 import com.example.sportdy.R
@@ -19,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_history.*
  */
 class HistoryFragment : Fragment() {
 
+    private lateinit var navController: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,11 +31,19 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_history, container, false)
 
-        val buttonLol = view.findViewById<Button>(R.id.buttonLOL)
+        navController = activity!!.findNavController(R.id.mainHostFragment)
 
+        val buttonLol = view.findViewById<Button>(R.id.buttonLOL)
         buttonLol.setOnClickListener { if (activity != null) activity!!.findViewById<ViewPager>(R.id.mainPager).currentItem = 1 }
+
+        val btnTesting = view.findViewById<Button>(R.id.btnTesting)
+        btnTesting.setOnClickListener {  }
+
+
 
         return view
     }
+
+
 
 }
