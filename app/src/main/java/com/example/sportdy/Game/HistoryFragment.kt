@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -25,7 +26,7 @@ import com.example.sportdy.R
 class HistoryFragment : Fragment(), GameAdapter.OnGameClickListener {
 
     private lateinit var sportGameViewModel: SportGameViewModel
-    //private lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,39 +34,61 @@ class HistoryFragment : Fragment(), GameAdapter.OnGameClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_history, container, false)
-        //navController = activity!!.findNavController(R.id.mainHostFragment)
 
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewGame)
-//        val adapter = GameAdapter(activity!!.applicationContext, this)
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
+        navController = activity!!.findNavController(R.id.mainHostFragment)
 
-//        sportGameViewModel = ViewModelProvider(this).get(SportGameViewModel::class.java)
-//
-//        sportGameViewModel.historySportGames.observe(viewLifecycleOwner,
-//            Observer { sportGameList: List<SportGame> ->
-//                sportGameList.let {
-//                    if (it.isNotEmpty()) {
-//                        adapter.setSportGame(it)
-//                        Toast.makeText(activity!!.applicationContext, "Number: " + it.size, Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            })
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewGame)
+        val adapter = GameAdapter(activity!!.applicationContext, this)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
 
-//        val buttonLol = view.findViewById<Button>(R.id.buttonLOL)
-//        buttonLol.setOnClickListener { if (activity != null) activity!!.findViewById<ViewPager>(R.id.mainPager).currentItem = 1 }
-//
-//        val btnTesting = view.findViewById<Button>(R.id.btnTesting)
-//        btnTesting.setOnClickListener { navController.navigate(R.id.action_gameFragment_to_testingFragment) }
+        sportGameViewModel = ViewModelProvider(this).get(SportGameViewModel::class.java)
+
+        sportGameViewModel.historySportGames.observe(viewLifecycleOwner,
+            Observer { sportGameList: List<SportGame> ->
+                sportGameList.let {
+                    if (it.isNotEmpty()) {
+                        adapter.setSportGame(it)
+                        Toast.makeText(
+                            activity!!.applicationContext,
+                            "Number: " + it.size,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            activity!!.applicationContext,
+                            "Number: " + it.size,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            })
 
         return view
     }
 
 
     override fun onGameClick(position: Int) {
-        Log.d("FindGame","Clicked ${position}")
-        //sportGameViewModel.historySportGames.value!!.get(position)
-        //navController.navigate(R.id.action_gameFragment_to_testingFragment)
+        Log.d("FindGame", "Clicked ${position}")
+        val sportGame = sportGameViewModel.historySportGames.value!!.get(position)
+        var bundle =
+            bundleOf(
+                "gameName" to sportGame.gameName,
+                "gameType" to sportGame.gameType,
+                "gameDate" to sportGame.gameDate,
+                "gameTime" to sportGame.gameTime,
+                "location" to sportGame.location,
+                "street1" to sportGame.street1,
+                "street2" to sportGame.street2,
+                "area" to sportGame.area,
+                "postcode" to sportGame.postcode,
+                "state" to sportGame.state,
+                "maxppl" to sportGame.maxppl,
+                "nowppl" to sportGame.nowppl,
+                "description" to sportGame.description,
+                "hosterName" to sportGame.hosterName
+            )
+        navController.navigate(R.id.action_gameFragment_to_testingFragment, bundle)
     }
 
 }

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -108,8 +109,25 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
 
     override fun onGameClick(position: Int) {
         Log.d("FindGame","Clicked ${position}")
-        sportGameViewModel.userSportGames.value!!.get(position)
-        navController.navigate(R.id.action_gameFragment_to_testingFragment)
+        val sportGame = sportGameViewModel.userSportGames.value!!.get(position)
+        var bundle =
+            bundleOf(
+                "gameName" to sportGame.gameName,
+                "gameType" to sportGame.gameType,
+                "gameDate" to sportGame.gameDate,
+                "gameTime" to sportGame.gameTime,
+                "location" to sportGame.location,
+                "street1" to sportGame.street1,
+                "street2" to sportGame.street2,
+                "area" to sportGame.area,
+                "postcode" to sportGame.postcode,
+                "state" to sportGame.state,
+                "maxppl" to sportGame.maxppl,
+                "nowppl" to sportGame.nowppl,
+                "description" to sportGame.description,
+                "hosterName" to sportGame.hosterName
+            )
+        navController.navigate(R.id.action_gameFragment_to_testingFragment, bundle)
     }
 
     companion object {

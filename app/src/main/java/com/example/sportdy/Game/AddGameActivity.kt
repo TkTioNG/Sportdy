@@ -81,6 +81,7 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     private fun onAddGame(): View.OnClickListener? {
+
         return View.OnClickListener {
             if (checkAddValid()) {
                 val game_name = tvGameName.text.toString()
@@ -137,6 +138,9 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     private fun checkAddValid(): Boolean {
+        valid = false
+
+
         return valid
     }
 
