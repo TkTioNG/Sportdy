@@ -17,7 +17,6 @@ import java.util.*
 class AddGameActivity : AppCompatActivity() {
 
     private var valid: Boolean = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_game)
@@ -78,9 +77,12 @@ class AddGameActivity : AppCompatActivity() {
         val btnSaveGame = findViewById<Button>(R.id.btnAddGame)
         btnSaveGame.setOnClickListener(onAddGame())
 
+
     }
 
+
     private fun onAddGame(): View.OnClickListener? {
+
         return View.OnClickListener {
             if (checkAddValid()) {
                 val game_name = tvGameName.text.toString()
@@ -137,8 +139,34 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     private fun checkAddValid(): Boolean {
+        val tvHosterName = findViewById<TextView>(R.id.tvHosterName)
+        val tvArea = findViewById<TextView>(R.id.tvArea)
+        val tvGameName = findViewById<TextView>(R.id.tvGameName)
+        val tvLocation = findViewById<TextView>(R.id.tvLocation)
+        val tvPostcode = findViewById<TextView>(R.id.tvPostcode)
+        val tvState = findViewById<TextView>(R.id.tvState)
+        val tvStreet1 = findViewById<TextView>(R.id.tvStreet1)
+        val tvStreet2 = findViewById<TextView>(R.id.tvStreet2)
+        val tvGameTime = findViewById<TextView>(R.id.tvGameTime)
+        val tvGameDate = findViewById<TextView>(R.id.tvGameDate)
+        valid=false
+        tvHosterName.error = if(tvHosterName.text.isNotEmpty()) null else "Valid Input Required"
+        tvArea.error = if(tvArea.text.isNotEmpty()) null else "Valid Input Required"
+        tvGameName.error = if (tvGameName.text.isNotEmpty()) null else "Valid Input Required"
+        tvLocation.error = if (tvLocation.text.isNotEmpty()) null else "Valid Input Required"
+        tvPostcode.error = if (tvPostcode.text.isNotEmpty() && tvPostcode.text.toString().toInt() > 9999 && tvPostcode.text.toString().toInt() < 100000) null  else "Input should be 5 digits"
+        tvState.error = if (tvState.text.isNotEmpty()) null else "Valid Input Required"
+        tvStreet1.error = if (tvStreet1.text.isNotEmpty()) null else "Valid Input Required"
+        tvStreet2.error = if (tvStreet2.text.isNotEmpty()) null else "Valid Input Required"
+        tvGameDate.error = if (tvGameDate.text.isNotEmpty()) null else "Valid Input Required"
+        tvGameTime.error = if (tvGameTime.text.isNotEmpty()) null else "Valid Input Required"
+
+
         return valid
     }
+
+
+
 
     private fun updateDateLabel(date: Date) {
         val sdf = SimpleDateFormat("dd MMM yyyy").format(date)
