@@ -20,4 +20,13 @@ interface SportGameDao {
     @Query("SELECT * FROM SportGame WHERE gameID = :search_game_id")
     fun getOne(search_game_id:Int): LiveData<List<SportGame>>
 
+    @Query("SELECT * FROM SportGame WHERE hosterName = :search_hoster_name AND gamedate >= :today_date")
+    fun getFrom(search_hoster_name:String, today_date:Long): LiveData<List<SportGame>>
+
+    @Query("SELECT * FROM SportGame WHERE hosterName != :search_hoster_name AND gamedate >= :today_date")
+    fun getNotFrom(search_hoster_name:String, today_date:Long): LiveData<List<SportGame>>
+
+    @Query("SELECT * FROM SportGame WHERE gamedate < :today_date")
+    fun gethistory(today_date:Long): LiveData<List<SportGame>>
+
 }

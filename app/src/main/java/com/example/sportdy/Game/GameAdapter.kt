@@ -1,9 +1,12 @@
 package com.example.sportdy.Game
 
 import android.content.Context
+import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +15,15 @@ import com.example.sportdy.R
 import java.text.SimpleDateFormat
 import kotlin.random.Random
 
-class GameAdapter internal constructor(context: Context) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter internal constructor(context: Context, onGameClickListener: OnGameClickListener) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var sportGames = emptyList<SportGame>()
+    private val monGameClickListener: OnGameClickListener = onGameClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val itemView = inflater.inflate(R.layout.recycler_view_game, parent, false)
-        return GameViewHolder(itemView)
+        return GameViewHolder(itemView, monGameClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -39,10 +43,11 @@ class GameAdapter internal constructor(context: Context) : RecyclerView.Adapter<
             gameTime = String.format("%02d:%02d AM", time/60, time%60)
         }
         holder.tvGameTime.text = gameTime
-        holder.tvLocation.text = sportGameRec.location
+        holder.tvLocation.text = sportGameRec.location + ", " + sportGameRec.state
         holder.tvHosterName.text = sportGameRec.hosterName
         holder.ivGameType.setImageResource(getGameTypeImage(sportGameRec.gameType))
         holder.ivHoster.setImageResource(getHosterImage())
+
     }
 
     fun setSportGame(sportGames: List<SportGame>) {
@@ -74,21 +79,37 @@ class GameAdapter internal constructor(context: Context) : RecyclerView.Adapter<
         }
     }
 
-    inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-      val tvGameType: TextView = itemView.findViewById(R.id.tvGameType)
+    inner class GameViewHolder(itemView: View, onGameClickListener: OnGameClickListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        val itemHolderView: View = itemView
+        val tvGameType: TextView = itemView.findViewById(R.id.tvGameType)
         val tvGameDate: TextView = itemView.findViewById(R.id.tvGameDate)
         val tvGameTime: TextView = itemView.findViewById(R.id.tvGameTime)
         val tvLocation: TextView = itemView.findViewById(R.id.tvLocation)
         val tvHosterName: TextView = itemView.findViewById(R.id.tvHosterName)
         val ivGameType: ImageView = itemView.findViewById(R.id.ivGameType)
         val ivHoster: ImageView = itemView.findViewById(R.id.ivHoster)
+        val btnMore: Button = itemView.findViewById(R.id.btnMore)
 
-        override fun onClick(v: View?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        private val onGameClickListener: OnGameClickListener = onGameClickListener
+
+        init {
+            itemHolderView.setOnClickListener(View.OnClickListener {
+                onGameClickListener.onGameClick(adapterPosition)
+                Log.i("FindGame", "Clicked ${adapterPosition}")
+            })
+            btnMore.setOnClickListener(View.OnClickListener {
+                onGameClickListener.onGameClick(adapterPosition)
+                Log.i("FindGame", "Clicked ${adapterPosition}")
+            })
+        }
+
+        override fun onClick(itemView: View) {
+            onGameClickListener.onGameClick(adapterPosition)
+            Log.i("FindGame", "Clicked ${adapterPosition}")
         }
     }
 
-    public interface onGameClickListener {
+    public interface OnGameClickListener {
         fun onGameClick(position: Int)
     }
 }

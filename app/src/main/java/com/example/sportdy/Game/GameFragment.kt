@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 
 import com.example.sportdy.R
@@ -16,7 +14,7 @@ import com.google.android.material.tabs.TabLayout
 /**
  * A simple [Fragment] subclass.
  */
-class GameFragment() : Fragment(), GameAdapter.onGameClickListener {
+class GameFragment() : Fragment() {
 
     private lateinit var gameFragmentAdapter: GameFragmentAdapter
     private lateinit var viewPager: ViewPager
@@ -41,7 +39,4 @@ class GameFragment() : Fragment(), GameAdapter.onGameClickListener {
         return view
     }
 
-    override fun onGameClick(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

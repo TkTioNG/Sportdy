@@ -17,6 +17,7 @@ class HelpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        activity!!.title = "Help"
         return inflater.inflate(R.layout.fragment_help, container, false)
     }
 

@@ -8,36 +8,49 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.sportdy.Game.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        android:label="Sportdy"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_testingFragment"
+            app:destination="@id/testingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.sportdy.Chat.ChatFragment"
-        android:label="fragment_chat"
+        android:label="Chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/friendFragment"
         android:name="com.example.sportdy.Friend.FriendFragment"
-        android:label="fragment_friend"
+        android:label="Friend"
         tools:layout="@layout/fragment_friend" />
     <fragment
         android:id="@+id/communityFragment"
         android:name="com.example.sportdy.Community.CommunityFragment"
-        android:label="fragment_community"
+        android:label="Community"
         tools:layout="@layout/fragment_community" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.sportdy.Settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/aboutUsFragment"
         android:name="com.example.sportdy.AboutUsFragment"
-        android:label="fragment_about_us"
+        android:label="About Us"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.example.sportdy.HelpFragment"
-        android:label="fragment_help"
+        android:label="Help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/testingFragment"
+        android:name="com.example.sportdy.Game.TestingFragment"
+        android:label="Testing Game Details"
+        tools:layout="@layout/fragment_testing" >
+        <action
+            android:id="@+id/action_testingFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>

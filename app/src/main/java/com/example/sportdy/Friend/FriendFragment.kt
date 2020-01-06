@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.sportdy.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class FriendFragment : Fragment() {
 
@@ -21,11 +22,16 @@ class FriendFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_friend, container, false)
+        val view = inflater.inflate(R.layout.fragment_friend, container, false)
+
+        activity!!.title = "Friend"
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(FriendViewModel::class.java)
         // TODO: Use the ViewModel
     }
