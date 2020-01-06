@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
+import com.example.sportdy.Game.GameFragment.Companion.FROM_FIND_GAME_FRAGMENT
 
 import com.example.sportdy.R
 
@@ -63,6 +64,8 @@ class FindGameFragment : Fragment(), GameAdapter.OnGameClickListener {
         val sportGame = sportGameViewModel.othersSportGames.value!!.get(position)
         var bundle =
             bundleOf(
+                "type" to FROM_FIND_GAME_FRAGMENT,
+                "gameID" to sportGame.gameID,
                 "gameName" to sportGame.gameName,
                 "gameType" to sportGame.gameType,
                 "gameDate" to sportGame.gameDate,
@@ -80,4 +83,5 @@ class FindGameFragment : Fragment(), GameAdapter.OnGameClickListener {
             )
         navController.navigate(R.id.action_gameFragment_to_testingFragment, bundle)
     }
+
 }

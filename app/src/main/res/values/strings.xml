@@ -47,6 +47,11 @@
     <string name="game_type_img_desc">Game Type Image</string>
     <string name="add_game">Add Game</string>
     <string name="testing">Testing</string>
+    <string name="update">Update</string>
+    <string name="join">Join</string>
+    <string name="unjoin">Unjoin</string>
+    <string name="remove">Remove</string>
+    <string name="gameid">GameID</string>
     <string-array name="GameType">
         <item>Basketball</item>
         <item>Bowling</item>

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
+import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
 
 import com.example.sportdy.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -112,6 +113,8 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
         val sportGame = sportGameViewModel.userSportGames.value!!.get(position)
         var bundle =
             bundleOf(
+                "type" to FROM_MY_GAME_FRAGMENT,
+                "gameID" to sportGame.gameID,
                 "gameName" to sportGame.gameName,
                 "gameType" to sportGame.gameType,
                 "gameDate" to sportGame.gameDate,
@@ -131,6 +134,6 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
     }
 
     companion object {
-        const val ADD_GAME_REQUEST_CODE = 1
+        const val ADD_GAME_REQUEST_CODE = 1001
     }
 }

@@ -29,4 +29,7 @@ interface SportGameDao {
     @Query("SELECT * FROM SportGame WHERE gamedate < :today_date")
     fun gethistory(today_date:Long): LiveData<List<SportGame>>
 
+    @Query("DELETE FROM SportGame WHERE gameID = :game_id")
+    fun deleteOne(game_id:Int)
+
 }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
+import com.example.sportdy.Game.GameFragment.Companion.FROM_HISTORY_FRAGMENT
 
 import com.example.sportdy.R
 
@@ -73,6 +74,8 @@ class HistoryFragment : Fragment(), GameAdapter.OnGameClickListener {
         val sportGame = sportGameViewModel.historySportGames.value!!.get(position)
         var bundle =
             bundleOf(
+                "type" to FROM_HISTORY_FRAGMENT,
+                "gameID" to sportGame.gameID,
                 "gameName" to sportGame.gameName,
                 "gameType" to sportGame.gameType,
                 "gameDate" to sportGame.gameDate,
