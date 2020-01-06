@@ -8,4 +8,5 @@
     <color name="colorSecondaryLight">#83b9ff</color>
     <color name="colorAccent">#1050A0</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="lightBlue">#C6F4FD</color>
 </resources>

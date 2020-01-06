@@ -5,12 +5,14 @@
     android:id="@+id/testing_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Game.TestingFragment">
+    tools:context=".Game.TestingFragment"
+    android:background="@color/lightBlue">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/lightBlue">
 
         <TextView
             android:id="@+id/tvGDGameID"
@@ -40,9 +42,12 @@
 
         <TextView
             android:id="@+id/tvGDHosterName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:text="@string/hoster_name"
+            app:layout_constraintEnd_toStartOf="@+id/ivGDGameType"
             app:layout_constraintStart_toStartOf="@+id/textViewPHosterName"
             app:layout_constraintTop_toBottomOf="@+id/textViewPHosterName" />
 
@@ -172,8 +177,8 @@
             android:id="@+id/tvGDNowPpl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="63dp"
+            android:layout_marginLeft="63dp"
             android:text="@string/nowppl"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvGDMaxPpl"
@@ -231,6 +236,7 @@
             android:src="@drawable/bowling_icon"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.62"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,7 +249,12 @@
             app:layout_constraintEnd_toStartOf="@+id/btnJoinGame"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            android:background="@drawable/btn_edge_color"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            />
 
         <Button
             android:id="@+id/btnJoinGame"
@@ -255,7 +266,12 @@
             app:layout_constraintEnd_toStartOf="@+id/btnUnjoinGame"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnUpdateGame"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            android:background="@drawable/btn_edge_color"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            />
 
         <Button
             android:id="@+id/btnUnjoinGame"
@@ -267,7 +283,12 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnJoinGame"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.5"
+            android:background="@drawable/btn_edge_color"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            />
 
         <Button
             android:id="@+id/btnRemoveGame"
@@ -279,7 +300,12 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnUnjoinGame"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.5"
+            android:background="@drawable/btn_edge_color"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -295,6 +321,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/game_name"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameName"
             app:layout_constraintTop_toBottomOf="@+id/textViewGameDetails" />
 
@@ -313,6 +340,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:text="@string/hoster_name"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/ivGDHoster"
             app:layout_constraintStart_toEndOf="@+id/ivGDHoster"
             app:layout_constraintTop_toTopOf="@+id/ivGDHoster" />
@@ -342,7 +370,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/gameid"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameID"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDGameName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameName"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewGameDate"
@@ -351,14 +380,16 @@
             android:layout_marginTop="17dp"
             android:text="@string/game_date"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameDate"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDGameID" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameID"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPGameTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:text="@string/game_time"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameTime"
             app:layout_constraintTop_toBottomOf="@+id/tvGDGameDate" />
 
@@ -370,14 +401,16 @@
             android:text="@string/location"
             app:layout_constraintBottom_toTopOf="@+id/tvGDLocation"
             app:layout_constraintStart_toStartOf="@+id/tvGDLocation"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDGameType" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameType"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:text="@string/description"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tvGDDesc"
             app:layout_constraintTop_toBottomOf="@+id/tvGDGameTime" />
 
@@ -389,7 +422,8 @@
             android:text="@string/street_address"
             app:layout_constraintBottom_toBottomOf="@+id/textViewGameDate"
             app:layout_constraintStart_toStartOf="@+id/tvGDStreet1"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDLocation"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPArea"
@@ -398,7 +432,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/area"
             app:layout_constraintStart_toStartOf="@+id/tvGDArea"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDStreet2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDStreet2"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPPostCode"
@@ -407,7 +442,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/postcode"
             app:layout_constraintStart_toStartOf="@+id/tvGDPostcode"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDArea" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDArea"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPState"
@@ -416,7 +452,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/game_state"
             app:layout_constraintStart_toStartOf="@+id/tvGDState"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDPostcode" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDPostcode"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewSlash"
@@ -427,7 +464,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvGDNowPpl"
             app:layout_constraintEnd_toEndOf="@+id/tvGDMaxPpl"
             app:layout_constraintStart_toStartOf="@+id/tvGDNowPpl"
-            app:layout_constraintTop_toTopOf="@+id/tvGDMaxPpl" />
+            app:layout_constraintTop_toTopOf="@+id/tvGDMaxPpl"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewPGameType"
@@ -436,7 +474,8 @@
             android:text="@string/game_type"
             app:layout_constraintBottom_toBottomOf="@+id/textViewPGameName"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameType"
-            app:layout_constraintTop_toTopOf="@+id/textViewPGameName" />
+            app:layout_constraintTop_toTopOf="@+id/textViewPGameName"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewCapacity"
@@ -444,8 +483,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="48dp"
             android:text="@string/capacity"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textViewSlash"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvGDDesc" />
