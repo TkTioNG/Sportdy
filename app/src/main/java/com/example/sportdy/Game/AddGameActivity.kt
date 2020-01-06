@@ -147,9 +147,7 @@ class AddGameActivity : AppCompatActivity() {
         val tvState = findViewById<TextView>(R.id.tvState)
         val tvStreet1 = findViewById<TextView>(R.id.tvStreet1)
         val tvStreet2 = findViewById<TextView>(R.id.tvStreet2)
-        val tvGameTime = findViewById<TextView>(R.id.tvGameTime)
-        val tvGameDate = findViewById<TextView>(R.id.tvGameDate)
-        valid=false
+
         tvHosterName.error = if(tvHosterName.text.isNotEmpty()) null else "Valid Input Required"
         tvArea.error = if(tvArea.text.isNotEmpty()) null else "Valid Input Required"
         tvGameName.error = if (tvGameName.text.isNotEmpty()) null else "Valid Input Required"
@@ -158,8 +156,7 @@ class AddGameActivity : AppCompatActivity() {
         tvState.error = if (tvState.text.isNotEmpty()) null else "Valid Input Required"
         tvStreet1.error = if (tvStreet1.text.isNotEmpty()) null else "Valid Input Required"
         tvStreet2.error = if (tvStreet2.text.isNotEmpty()) null else "Valid Input Required"
-        tvGameDate.error = if (tvGameDate.text.isNotEmpty()) null else "Valid Input Required"
-        tvGameTime.error = if (tvGameTime.text.isNotEmpty()) null else "Valid Input Required"
+
 
 
         return valid

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
+import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
 
 import com.example.sportdy.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -108,11 +110,30 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
 
     override fun onGameClick(position: Int) {
         Log.d("FindGame","Clicked ${position}")
-        sportGameViewModel.userSportGames.value!!.get(position)
-        navController.navigate(R.id.action_gameFragment_to_testingFragment)
+        val sportGame = sportGameViewModel.userSportGames.value!!.get(position)
+        var bundle =
+            bundleOf(
+                "type" to FROM_MY_GAME_FRAGMENT,
+                "gameID" to sportGame.gameID,
+                "gameName" to sportGame.gameName,
+                "gameType" to sportGame.gameType,
+                "gameDate" to sportGame.gameDate,
+                "gameTime" to sportGame.gameTime,
+                "location" to sportGame.location,
+                "street1" to sportGame.street1,
+                "street2" to sportGame.street2,
+                "area" to sportGame.area,
+                "postcode" to sportGame.postcode,
+                "state" to sportGame.state,
+                "maxppl" to sportGame.maxppl,
+                "nowppl" to sportGame.nowppl,
+                "description" to sportGame.description,
+                "hosterName" to sportGame.hosterName
+            )
+        navController.navigate(R.id.action_gameFragment_to_testingFragment, bundle)
     }
 
     companion object {
-        const val ADD_GAME_REQUEST_CODE = 1
+        const val ADD_GAME_REQUEST_CODE = 1001
     }
 }

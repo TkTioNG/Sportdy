@@ -13,13 +13,443 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tvGDGameID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/gameid"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPGameID" />
+
+        <TextView
+            android:id="@+id/tvGDGameName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/game_name"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPGameName" />
+
+        <TextView
+            android:id="@+id/tvGDHosterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/testing"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/hoster_name"
+            app:layout_constraintStart_toStartOf="@+id/textViewPHosterName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPHosterName" />
+
+        <TextView
+            android:id="@+id/tvGDGameDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/game_date"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGameDate" />
+
+        <TextView
+            android:id="@+id/tvGDGameTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/game_time"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPGameTime" />
+
+        <TextView
+            android:id="@+id/tvGDLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/location"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameType" />
+
+        <TextView
+            android:id="@+id/tvGDStreet1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/street1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPStreetAddress" />
+
+        <TextView
+            android:id="@+id/tvGDStreet2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/street2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDStreet1" />
+
+        <TextView
+            android:id="@+id/tvGDArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/area"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPArea" />
+
+        <TextView
+            android:id="@+id/tvGDPostcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/postcode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPPostCode" />
+
+        <TextView
+            android:id="@+id/tvGDState"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/game_state"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPState" />
+
+        <TextView
+            android:id="@+id/tvGDMaxPpl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/maxppl"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDDesc" />
+
+        <TextView
+            android:id="@+id/tvGDNowPpl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:text="@string/nowppl"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGDMaxPpl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvGDMaxPpl"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvGDDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/description"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPDesc" />
+
+        <TextView
+            android:id="@+id/tvGDGameType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/game_type"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGDGameName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/tvGDGameName" />
+
+        <ImageView
+            android:id="@+id/ivGDHoster"
+            android:layout_width="81dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/hoster_img_desc"
+            android:src="@drawable/young_boy_icon"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivGDGameType"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/game_type_img_desc"
+            android:src="@drawable/bowling_icon"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnUpdateGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnJoinGame"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <Button
+            android:id="@+id/btnJoinGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/join"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnUnjoinGame"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnUpdateGame"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <Button
+            android:id="@+id/btnUnjoinGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unjoin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemoveGame"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnJoinGame"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Button
+            android:id="@+id/btnRemoveGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnUnjoinGame"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="90dp"
+            />
+
+        <TextView
+            android:id="@+id/textViewPGameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/game_name"
+            app:layout_constraintStart_toStartOf="@+id/tvGDGameName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGameDetails" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="119dp" />
+
+        <TextView
+            android:id="@+id/textViewPHosterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:text="@string/hoster_name"
+            app:layout_constraintBottom_toBottomOf="@+id/ivGDHoster"
+            app:layout_constraintStart_toEndOf="@+id/ivGDHoster"
+            app:layout_constraintTop_toTopOf="@+id/ivGDHoster" />
+
+        <TextView
+            android:id="@+id/textViewGameDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:singleLine="false"
+            android:text="@string/game_details"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/ivGDHoster"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="208dp" />
+
+        <TextView
+            android:id="@+id/textViewPGameID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/gameid"
+            app:layout_constraintStart_toStartOf="@+id/tvGDGameID"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameName" />
+
+        <TextView
+            android:id="@+id/textViewGameDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="@string/game_date"
+            app:layout_constraintStart_toStartOf="@+id/tvGDGameDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameID" />
+
+        <TextView
+            android:id="@+id/textViewPGameTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/game_time"
+            app:layout_constraintStart_toStartOf="@+id/tvGDGameTime"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameDate" />
+
+        <TextView
+            android:id="@+id/textViewPLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/location"
+            app:layout_constraintBottom_toTopOf="@+id/tvGDLocation"
+            app:layout_constraintStart_toStartOf="@+id/tvGDLocation"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameType" />
+
+        <TextView
+            android:id="@+id/textViewPDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description"
+            app:layout_constraintStart_toStartOf="@+id/tvGDDesc"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDGameTime" />
+
+        <TextView
+            android:id="@+id/textViewPStreetAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/street_address"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewGameDate"
+            app:layout_constraintStart_toStartOf="@+id/tvGDStreet1"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDLocation" />
+
+        <TextView
+            android:id="@+id/textViewPArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/area"
+            app:layout_constraintStart_toStartOf="@+id/tvGDArea"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDStreet2" />
+
+        <TextView
+            android:id="@+id/textViewPPostCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/postcode"
+            app:layout_constraintStart_toStartOf="@+id/tvGDPostcode"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDArea" />
+
+        <TextView
+            android:id="@+id/textViewPState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/game_state"
+            app:layout_constraintStart_toStartOf="@+id/tvGDState"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDPostcode" />
+
+        <TextView
+            android:id="@+id/textViewSlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slash"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGDNowPpl"
+            app:layout_constraintEnd_toEndOf="@+id/tvGDMaxPpl"
+            app:layout_constraintStart_toStartOf="@+id/tvGDNowPpl"
+            app:layout_constraintTop_toTopOf="@+id/tvGDMaxPpl" />
+
+        <TextView
+            android:id="@+id/textViewPGameType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_type"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewPGameName"
+            app:layout_constraintStart_toStartOf="@+id/tvGDGameType"
+            app:layout_constraintTop_toTopOf="@+id/textViewPGameName" />
+
+        <TextView
+            android:id="@+id/textViewCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/capacity"
+            app:layout_constraintBottom_toTopOf="@+id/textViewSlash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGDDesc" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
