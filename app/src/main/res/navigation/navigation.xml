@@ -47,8 +47,8 @@
     <fragment
         android:id="@+id/testingFragment"
         android:name="com.example.sportdy.Game.TestingFragment"
-        android:label="Testing Game Details"
-        tools:layout="@layout/fragment_testing" >
+        android:label="Game Details"
+        tools:layout="@layout/fragment_testing">
         <action
             android:id="@+id/action_testingFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
