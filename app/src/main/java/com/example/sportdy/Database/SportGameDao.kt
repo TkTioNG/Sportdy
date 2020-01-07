@@ -2,6 +2,7 @@ package com.example.sportdy.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import java.text.FieldPosition
 
 @Dao
 interface SportGameDao {
@@ -30,6 +31,8 @@ interface SportGameDao {
     fun gethistory(today_date:Long): LiveData<List<SportGame>>
 
     @Query("DELETE FROM SportGame WHERE gameID = :game_id")
-    fun deleteOne(game_id:Int)
+    suspend fun deleteOne(game_id:Int)
 
+    @Query("UPDATE SportGame SET gamename = :game_name, gametype = :game_type, gamedate = :game_date, gametime = :game_time, location = :location, street1 = :street1, street2 = :street2, area = :area, postcode = :postcode, state = :state, maxppl = :maxppl, description = :description WHERE gameID = :game_id")
+    suspend fun updateOne(game_id: Int, game_name:String, game_type:String, game_date:Long, game_time:Int, location:String, street1:String, street2:String, area:String, postcode:Int, state:String, maxppl:Int, description:String)
 }

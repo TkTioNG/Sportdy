@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import com.example.sportdy.Game.GameFragment.Companion.EDIT_GAME_REQUEST_CODE
 import com.example.sportdy.R
 import kotlinx.android.synthetic.main.activity_add_game.*
 import java.text.SimpleDateFormat
@@ -17,6 +18,20 @@ import java.util.*
 class AddGameActivity : AppCompatActivity() {
 
     private var valid: Boolean = true
+
+    private lateinit var tvGameName: TextView
+    private lateinit var tvHosterName: TextView
+    private lateinit var spGameType: Spinner
+    private lateinit var tvGameDate: TextView
+    private lateinit var tvGameTime: TextView
+    private lateinit var tvLocation: TextView
+    private lateinit var tvStreet1: TextView
+    private lateinit var tvStreet2: TextView
+    private lateinit var tvArea: TextView
+    private lateinit var tvPostcode: TextView
+    private lateinit var tvState: TextView
+    private lateinit var tvMaxPpl: TextView
+    private lateinit var tvDesc: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,8 +90,60 @@ class AddGameActivity : AppCompatActivity() {
             tp.show()
         }
 
+        tvGameName = findViewById(R.id.tvGameName)
+        tvHosterName = findViewById(R.id.tvHosterName)
+        tvLocation = findViewById(R.id.tvLocation)
+        tvStreet1 = findViewById(R.id.tvStreet1)
+        tvStreet2 = findViewById(R.id.tvStreet2)
+        tvArea = findViewById(R.id.tvArea)
+        tvPostcode = findViewById(R.id.tvPostcode)
+        tvState = findViewById(R.id.tvState)
+        tvMaxPpl = findViewById(R.id.tvMaxPpl)
+        tvDesc = findViewById(R.id.tvDesc)
+
         val btnSaveGame = findViewById<Button>(R.id.btnAddGame)
         btnSaveGame.setOnClickListener(onAddGame())
+
+        if (intent.getIntExtra(EDIT_GAME_CODE, 0) == EDIT_GAME_REQUEST_CODE) {
+            toolbar.title = "Update Sport Game"
+            setUpdateGame()
+        }
+    }
+
+    private fun setUpdateGame() {
+        val game_name = intent.getStringExtra(ADD_GAME_NAME)
+        val game_type = intent.getStringExtra(ADD_GAME_TYPE)
+        val game_date = intent.getStringExtra(ADD_GAME_DATE)
+        val game_time = intent.getStringExtra(ADD_GAME_TIME)
+        val location = intent.getStringExtra(ADD_GAME_LOCATION)
+        val street1 = intent.getStringExtra(ADD_GAME_STREET1)
+        val street2 = intent.getStringExtra(ADD_GAME_STREET2)
+        val area = intent.getStringExtra(ADD_GAME_AREA)
+        val postcode = intent.getStringExtra(ADD_GAME_POSTCODE)
+        val state = intent.getStringExtra(ADD_GAME_STATE)
+        val maxppl = intent.getStringExtra(ADD_GAME_MAXPPL)
+        val game_desc = intent.getStringExtra(ADD_GAME_DESC)
+        val hoster_name = intent.getStringExtra(ADD_GAME_HOSTERNAME)
+
+        spGameType = findViewById(R.id.spGameType)
+        tvGameDate = findViewById(R.id.tvGameDate)
+        tvGameTime = findViewById(R.id.tvGameTime)
+        
+        spGameType.setSelection(1)
+
+        tvGameName.text = game_name
+        tvGameDate.text = game_date
+        tvGameTime.text = game_time
+        tvLocation.text = location
+        tvStreet1.text = street1
+        tvStreet2.text = street2
+        tvArea.text = area
+        tvPostcode.text = postcode
+        tvState.text = state
+        tvMaxPpl.text = maxppl
+        tvDesc.text = game_desc
+        tvHosterName.text = hoster_name
+        tvHosterName.isEnabled = false
 
     }
 
@@ -138,7 +205,7 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     private fun checkAddValid(): Boolean {
-        valid = false
+        //valid = false
 
 
         return valid
@@ -163,6 +230,8 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     companion object {
+        const val EDIT_GAME_CODE = "com.example.sportdy.Game.EDIT_GAME_CODE"
+
         const val ADD_GAME_NAME = "com.example.sportdy.Game.GAME_NAME"
         const val ADD_GAME_TYPE = "com.example.sportdy.Game.GAME_TYPE"
         const val ADD_GAME_DATE = "com.example.sportdy.Game.GAME_DATE"

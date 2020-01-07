@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
+import com.example.sportdy.Game.GameFragment.Companion.ADD_GAME_REQUEST_CODE
 import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
 
 import com.example.sportdy.R
@@ -133,7 +134,4 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
         navController.navigate(R.id.action_gameFragment_to_testingFragment, bundle)
     }
 
-    companion object {
-        const val ADD_GAME_REQUEST_CODE = 1001
-    }
 }

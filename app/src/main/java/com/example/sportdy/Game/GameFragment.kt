@@ -43,6 +43,9 @@ class GameFragment() : Fragment() {
         const val FROM_FIND_GAME_FRAGMENT = 0
         const val FROM_MY_GAME_FRAGMENT = 1
         const val FROM_HISTORY_FRAGMENT = 2
+
+        const val ADD_GAME_REQUEST_CODE = 1001
+        const val EDIT_GAME_REQUEST_CODE = 1002
     }
 
 }

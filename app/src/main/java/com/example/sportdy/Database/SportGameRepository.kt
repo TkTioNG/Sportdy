@@ -11,4 +11,12 @@ class SportGameRepository(private val sportGameDao: SportGameDao) {
     suspend fun insertSportGame(sportGame: SportGame) {
         sportGameDao.insert(sportGame)
     }
+
+    suspend fun deleteSportGame(gameID: Int) {
+        sportGameDao.deleteOne(gameID)
+    }
+
+    suspend fun updateSportGame(gameID: Int, gameName: String, game_type:String, game_date:Long, game_time:Int, location:String, street1:String, street2:String, area:String, postcode:Int, state:String, maxppl:Int, description:String) {
+        sportGameDao.updateOne(gameID, gameName, game_type, game_date, game_time, location, street1, street2, area, postcode, state, maxppl, description)
+    }
 }
