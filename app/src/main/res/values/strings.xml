@@ -60,5 +60,9 @@
         <item>Jogging</item>
         <item>Soccer</item>
     </string-array>
+    <string name="game_details"><b><u>Game Details</u></b></string>
+    <string name="street_address">Street Address</string>
+    <string name="slash">/</string>
+    <string name="capacity">Capacity : </string>
 
 </resources>

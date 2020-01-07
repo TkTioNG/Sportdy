@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -22,7 +23,9 @@ import com.example.sportdy.Game.GameFragment.Companion.EDIT_GAME_REQUEST_CODE
 import com.example.sportdy.Game.GameFragment.Companion.FROM_FIND_GAME_FRAGMENT
 import com.example.sportdy.Game.GameFragment.Companion.FROM_HISTORY_FRAGMENT
 import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
+import kotlin.random.Random
 
 
 /**
@@ -45,6 +48,8 @@ class TestingFragment() : Fragment() {
     private lateinit var tvGDMaxPpl: TextView
     private lateinit var tvGDNowPpl: TextView
     private lateinit var tvGDDesc: TextView
+    private lateinit var ivGDGameType: ImageView
+    private lateinit var ivGDHoster: ImageView
 
     private var gameID: Int = 0
 
@@ -79,6 +84,8 @@ class TestingFragment() : Fragment() {
         tvGDMaxPpl = view.findViewById<TextView>(R.id.tvGDMaxPpl)
         tvGDNowPpl = view.findViewById<TextView>(R.id.tvGDNowPpl)
         tvGDDesc = view.findViewById<TextView>(R.id.tvGDDesc)
+        ivGDGameType = view.findViewById<ImageView>(R.id.ivGDGameType)
+        ivGDHoster = view.findViewById<ImageView>(R.id.ivGDHoster)
 
         val type = arguments?.getInt("type", 0)
         tvGDGameID.text = arguments?.getInt("gameID").toString()
@@ -103,6 +110,8 @@ class TestingFragment() : Fragment() {
         tvGDMaxPpl.text = arguments?.getInt("maxppl", 10).toString()
         tvGDNowPpl.text = arguments?.getInt("nowppl", 1).toString()
         tvGDDesc.text = arguments?.getString("description").toString()
+        ivGDGameType.setImageResource(getGameTypeImage(tvGDGameType.text.toString()))
+        ivGDHoster.setImageResource(getHosterImage(tvGDHosterName.text.toString()))
 
         val btnUpdateGame = view.findViewById<Button>(R.id.btnUpdateGame)
         val btnJoinGame = view.findViewById<Button>(R.id.btnJoinGame)
@@ -137,6 +146,7 @@ class TestingFragment() : Fragment() {
         }
 
         btnUpdateGame.setOnClickListener(onUpdateGame())
+        btnRemoveGame.setOnClickListener(onRemoveGame())
 
         return view
     }
@@ -150,16 +160,6 @@ class TestingFragment() : Fragment() {
             val game_name = tvGDGameName.text.toString()
             val game_type = tvGDGameType.toString()
             val game_date = tvGDGameDate.text.toString()
-//            val game_date =
-//                SimpleDateFormat("dd MMM yyyy").parse(tvGDGameDate.text.toString())!!.time
-//
-//            var time = 0
-//            var tvGameTime = tvGDGameTime.text.toString().split(':')
-//            var tvGameTime2 = tvGameTime[1].split(' ')
-//            time = tvGameTime[0].toInt() * 60 + tvGameTime2[0].toInt()
-//            if (tvGameTime2[1].equals("PM") && tvGameTime[0].toInt() <= 12)
-//                time += 12 * 60
-
             val game_time = tvGDGameTime.text.toString()
             val game_location = tvGDLocation.text.toString()
             val game_street1 = tvGDStreet1.text.toString()
@@ -189,6 +189,25 @@ class TestingFragment() : Fragment() {
             intent.putExtra(ADD_GAME_HOSTERNAME, game_hostername)
 
             startActivityForResult(intent, EDIT_GAME_REQUEST_CODE)
+        }
+    }
+
+    private fun onRemoveGame(): View.OnClickListener {
+        return View.OnClickListener {
+            gameID = tvGDGameID.text.toString().toInt()
+            sportGameViewModel.deleteSportGame(gameID)
+
+            Snackbar.make(this.view!!, "You have deleted one record", Snackbar.LENGTH_LONG).setAction("Undo", View.OnClickListener {
+                fun onClick(view: View) {
+                    Toast.makeText(
+                        activity!!.applicationContext,
+                        "You have restore back the sport game",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }).show()
+
+            activity!!.onBackPressed()
         }
     }
 
@@ -233,11 +252,39 @@ class TestingFragment() : Fragment() {
                 tvGDMaxPpl.text = _game_maxppl.toString()
                 tvGDDesc.text = _game_desc
 
+
+
                 Toast.makeText(activity!!.applicationContext, "You have update sport game.", Toast.LENGTH_SHORT).show()
 
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun getGameTypeImage(gameType: String): Int {
+        return when (gameType) {
+            "Basketball" -> R.drawable.basketball_icon
+            "Bowling" -> R.drawable.bowling_icon
+            "Cycling" -> R.drawable.cycling_icon
+            "Workout" -> R.drawable.gym_icon
+            "Jogging" -> R.drawable.jogging_icon
+            "Soccer" -> R.drawable.soccer_icon
+            else -> R.drawable.basketball_icon
+        }
+    }
+
+    private fun getHosterImage(hosterName: String): Int {
+        if (hosterName == "TkTioNG"||hosterName == "Me")
+            return R.drawable.tktiong_icon
+        val random = Random.nextInt(6)
+        return when (random) {
+            0 -> R.drawable.long_hair_woman_icon
+            1 -> R.drawable.mid_man_icon
+            2 -> R.drawable.old_man_icon
+            3 -> R.drawable.short_hair_woman_icon
+            4 -> R.drawable.young_boy_icon
+            else -> R.drawable.young_girl_icon
+        }
     }
 
     companion object {

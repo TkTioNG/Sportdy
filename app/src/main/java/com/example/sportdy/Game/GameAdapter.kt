@@ -34,8 +34,8 @@ class GameAdapter internal constructor(context: Context, onGameClickListener: On
         val sportGameRec: SportGame = sportGames.get(position)
         holder.tvGameType.text = sportGameRec.gameType
         holder.tvGameDate.text = SimpleDateFormat("EEE, DD MMM YYYY").format(sportGameRec.gameDate)
-        var time = sportGameRec.gameTime
-        var gameTime : String = ""
+        val time = sportGameRec.gameTime
+        var gameTime = ""
         if (time/60 > 12) {
             gameTime = String.format("%02d:%02d PM", time/60 - 12, time%60)
         }
@@ -43,10 +43,10 @@ class GameAdapter internal constructor(context: Context, onGameClickListener: On
             gameTime = String.format("%02d:%02d AM", time/60, time%60)
         }
         holder.tvGameTime.text = gameTime
-        holder.tvLocation.text = sportGameRec.location + ", " + sportGameRec.state
+        holder.tvLocation.text = String.format("%s, %s", sportGameRec.location, sportGameRec.state)
         holder.tvHosterName.text = sportGameRec.hosterName
         holder.ivGameType.setImageResource(getGameTypeImage(sportGameRec.gameType))
-        holder.ivHoster.setImageResource(getHosterImage())
+        holder.ivHoster.setImageResource(getHosterImage(holder.tvHosterName.text.toString()))
 
     }
 
@@ -67,7 +67,9 @@ class GameAdapter internal constructor(context: Context, onGameClickListener: On
         }
     }
 
-    private fun getHosterImage(): Int {
+    private fun getHosterImage(hosterName: String): Int {
+        if (hosterName == "TkTioNG"||hosterName == "Me")
+            return R.drawable.tktiong_icon
         val random = Random.nextInt(6)
         return when (random) {
             0 -> R.drawable.long_hair_woman_icon
@@ -88,16 +90,11 @@ class GameAdapter internal constructor(context: Context, onGameClickListener: On
         val tvHosterName: TextView = itemView.findViewById(R.id.tvHosterName)
         val ivGameType: ImageView = itemView.findViewById(R.id.ivGameType)
         val ivHoster: ImageView = itemView.findViewById(R.id.ivHoster)
-        val btnMore: Button = itemView.findViewById(R.id.btnMore)
 
         private val onGameClickListener: OnGameClickListener = onGameClickListener
 
         init {
             itemHolderView.setOnClickListener(View.OnClickListener {
-                onGameClickListener.onGameClick(adapterPosition)
-                Log.i("FindGame", "Clicked ${adapterPosition}")
-            })
-            btnMore.setOnClickListener(View.OnClickListener {
                 onGameClickListener.onGameClick(adapterPosition)
                 Log.i("FindGame", "Clicked ${adapterPosition}")
             })

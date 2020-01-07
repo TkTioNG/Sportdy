@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.example.sportdy.Game.GameFragment.Companion.EDIT_GAME_REQUEST_CODE
+import com.example.sportdy.Game.TestingFragment.Companion.EDIT_GAME_CODE
 import com.example.sportdy.R
 import kotlinx.android.synthetic.main.activity_add_game.*
 import java.text.SimpleDateFormat
@@ -41,7 +42,7 @@ class AddGameActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val spGameType = findViewById<Spinner>(R.id.spGameType)
+        spGameType = findViewById<Spinner>(R.id.spGameType)
         ArrayAdapter.createFromResource(
             this,
             R.array.GameType,
@@ -60,7 +61,7 @@ class AddGameActivity : AppCompatActivity() {
             updateDateLabel(calendar.time)
         }
 
-        val tvGameDate = findViewById<TextView>(R.id.tvGameDate)
+        tvGameDate = findViewById<TextView>(R.id.tvGameDate)
         tvGameDate.setOnClickListener {
             DatePickerDialog(
                 this,
@@ -77,7 +78,7 @@ class AddGameActivity : AppCompatActivity() {
             updateTimeLabel(hourOfDay, minute)
         }
 
-        val tvGameTime = findViewById<TextView>(R.id.tvGameTime)
+        tvGameTime = findViewById<TextView>(R.id.tvGameTime)
         tvGameTime.setOnClickListener {
             val tp = TimePickerDialog(
                 this,
@@ -128,7 +129,7 @@ class AddGameActivity : AppCompatActivity() {
         spGameType = findViewById(R.id.spGameType)
         tvGameDate = findViewById(R.id.tvGameDate)
         tvGameTime = findViewById(R.id.tvGameTime)
-        
+
         spGameType.setSelection(1)
 
         tvGameName.text = game_name
@@ -205,8 +206,60 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     private fun checkAddValid(): Boolean {
-        //valid = false
+        valid = true
 
+        val tvHosterName = findViewById<TextView>(R.id.tvHosterName)
+        val tvArea = findViewById<TextView>(R.id.tvArea)
+        val tvGameName = findViewById<TextView>(R.id.tvGameName)
+        val tvGameDate = findViewById<TextView>(R.id.tvGameDate)
+        val tvGameTime = findViewById<TextView>(R.id.tvGameTime)
+        val tvLocation = findViewById<TextView>(R.id.tvLocation)
+        val tvPostcode = findViewById<TextView>(R.id.tvPostcode)
+        val tvState = findViewById<TextView>(R.id.tvState)
+        val tvStreet1 = findViewById<TextView>(R.id.tvStreet1)
+        val tvStreet2 = findViewById<TextView>(R.id.tvStreet2)
+
+
+        if(!tvHosterName.text.isNotEmpty()) {
+            tvHosterName.error = "Hoster Name is Required"
+            valid = false
+        }
+        if(!tvArea.text.isNotEmpty()) {
+            tvArea.error = "Game Area is Required"
+            valid = false
+        }
+        if (!tvGameName.text.isNotEmpty()) {
+            tvGameName.error = "Game Name is Required"
+            valid = false
+        }
+        if (!tvGameDate.text.isNotEmpty()) {
+            tvGameDate.error = "Game Date is Required"
+            valid = false
+        }
+        if (!tvGameTime.text.isNotEmpty()) {
+            tvGameTime.error = "Game Time is Required"
+            valid = false
+        }
+        if (!tvLocation.text.isNotEmpty()) {
+            tvLocation.error = "Game Location is Required"
+            valid = false
+        }
+        if (!tvPostcode.text.isNotEmpty()) {
+            tvPostcode.error = "Postcode is Required"
+            valid = false
+        }
+        else if (tvPostcode.text.toString().toInt() < 10000 || tvPostcode.text.toString().toInt() > 99999) {
+            tvPostcode.error = "Input should be 5 digits"
+            valid = false
+        }
+        if (!tvState.text.isNotEmpty()) {
+            tvState.error = "State is Required"
+            valid = false
+        }
+        if (!tvStreet1.text.isNotEmpty()) {
+            tvStreet1.error = "Street is Required"
+            valid = false
+        }
 
         return valid
     }
@@ -230,8 +283,6 @@ class AddGameActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EDIT_GAME_CODE = "com.example.sportdy.Game.EDIT_GAME_CODE"
-
         const val ADD_GAME_NAME = "com.example.sportdy.Game.GAME_NAME"
         const val ADD_GAME_TYPE = "com.example.sportdy.Game.GAME_TYPE"
         const val ADD_GAME_DATE = "com.example.sportdy.Game.GAME_DATE"
