@@ -145,9 +145,16 @@ class TestingFragment() : Fragment() {
             }
         }
 
+        if (tvGDHosterName.text.toString() != "TkTioNG" && btnJoinGame.visibility == View.GONE) {
+            btnUpdateGame.visibility = View.GONE
+            btnUnjoinGame.visibility = View.VISIBLE
+            btnRemoveGame.visibility = View.GONE
+        }
+
         btnUpdateGame.setOnClickListener(onUpdateGame())
         btnRemoveGame.setOnClickListener(onRemoveGame())
-
+        btnJoinGame.setOnClickListener(onJoinGame())
+        btnUnjoinGame.setOnClickListener(onUnjoinGame())
         return view
     }
 
@@ -227,6 +234,42 @@ class TestingFragment() : Fragment() {
                 }
             }).show()
 
+            activity!!.onBackPressed()
+        }
+    }
+
+    private fun onJoinGame(): View.OnClickListener {
+        return View.OnClickListener {
+            gameID = tvGDGameID.text.toString().toInt()
+            sportGameViewModel.joinGame(gameID)
+            Snackbar.make(this.view!!, "You have just join a game", Snackbar.LENGTH_LONG).setAction("Undo", View.OnClickListener {
+                fun onClick(view: View) {
+                    sportGameViewModel.unjoinGame(gameID)
+                    Toast.makeText(
+                        activity!!.applicationContext,
+                        "You have unjoin sport game",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }).show()
+            activity!!.onBackPressed()
+        }
+    }
+
+    private fun onUnjoinGame(): View.OnClickListener {
+        return View.OnClickListener {
+            gameID = tvGDGameID.text.toString().toInt()
+            sportGameViewModel.unjoinGame(gameID)
+            Snackbar.make(this.view!!, "You have just unjoin a game", Snackbar.LENGTH_LONG).setAction("Undo", View.OnClickListener {
+                fun onClick(view: View) {
+                    sportGameViewModel.joinGame(gameID)
+                    Toast.makeText(
+                        activity!!.applicationContext,
+                        "You have join back the sport game",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }).show()
             activity!!.onBackPressed()
         }
     }

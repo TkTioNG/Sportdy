@@ -33,4 +33,12 @@ class SportGameViewModel(application: Application): AndroidViewModel(application
     fun deleteSportGame(gameID: Int) = viewModelScope.launch {
         repository.deleteSportGame(gameID)
     }
+
+    fun joinGame(gameID: Int) = viewModelScope.launch {
+        repository.joinGame(gameID)
+    }
+
+    fun unjoinGame(gameID: Int) = viewModelScope.launch {
+        repository.unjoinGame(gameID)
+    }
 }
