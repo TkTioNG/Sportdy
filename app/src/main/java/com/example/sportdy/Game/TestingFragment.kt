@@ -4,10 +4,8 @@ package com.example.sportdy.Game
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -62,8 +60,10 @@ class TestingFragment() : Fragment() {
         // Inflate the layout for this fragment
         //(activity as DrawerLocker).setDrawerEnabled(false)
         val actionbar = (activity as AppCompatActivity).supportActionBar!!
+
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDefaultDisplayHomeAsUpEnabled(true)
+        setHasOptionsMenu(true)
 
         val view = inflater.inflate(R.layout.fragment_testing, container, false)
 
@@ -149,6 +149,26 @@ class TestingFragment() : Fragment() {
         btnRemoveGame.setOnClickListener(onRemoveGame())
 
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.share_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menuShare -> {
+                val shareIntent = Intent()
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT,
+                    "Hey check out my game.");
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun onUpdateGame(): View.OnClickListener {

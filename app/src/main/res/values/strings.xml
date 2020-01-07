@@ -64,5 +64,5 @@
     <string name="street_address">Street Address</string>
     <string name="slash">/</string>
     <string name="capacity">Capacity : </string>
-
+    <string name="share">Share Game</string>
 </resources>
