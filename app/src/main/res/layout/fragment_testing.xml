@@ -371,9 +371,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/gameid"
             android:textStyle="bold"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/tvGDGameID"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDDesc"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvGDDesc" />
 
         <TextView
             android:id="@+id/textViewGameDate"
@@ -410,11 +410,11 @@
             android:id="@+id/textViewPDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:text="@string/description"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tvGDDesc"
-            app:layout_constraintTop_toBottomOf="@+id/tvGDGameTime" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGDStreet2" />
 
         <TextView
             android:id="@+id/textViewPStreetAddress"
@@ -424,7 +424,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textViewPGameTime"
             app:layout_constraintStart_toStartOf="@+id/tvGDStreet1"
-            app:layout_constraintTop_toTopOf="@+id/tvGDGameTime" />
+            app:layout_constraintTop_toTopOf="@+id/textViewPGameTime" />
 
         <TextView
             android:id="@+id/textViewPArea"
