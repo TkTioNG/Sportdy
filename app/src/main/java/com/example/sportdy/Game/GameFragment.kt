@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
+import com.example.sportdy.Database.SportGameViewModel
 
 import com.example.sportdy.R
 import com.google.android.material.tabs.TabLayout
@@ -20,6 +22,7 @@ class GameFragment() : Fragment() {
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
 //    private lateinit var viewModel: GameViewModel
+    private lateinit var sportGameViewModel: SportGameViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

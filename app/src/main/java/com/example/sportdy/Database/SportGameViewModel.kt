@@ -1,10 +1,20 @@
 package com.example.sportdy.Database
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportdy.App
+import com.example.sportdy.Game.GameSingleton
+import com.example.sportdy.R
 import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 
 class SportGameViewModel(application: Application): AndroidViewModel(application) {
     private val repository: SportGameRepository
@@ -24,6 +34,10 @@ class SportGameViewModel(application: Application): AndroidViewModel(application
 
     fun insertSportGame(sportGame: SportGame) = viewModelScope.launch {
         repository.insertSportGame(sportGame)
+    }
+
+    fun syncSportGame(sportGames: List<SportGame>) = viewModelScope.launch {
+        repository.syncSportGame(sportGames)
     }
 
     fun updateSportGame(gameID: Int, gameName:String, game_type:String, game_date:Long, game_time:Int, location:String, street1:String, street2:String, area:String, postcode:Int, state:String, maxppl:Int, description:String) = viewModelScope.launch {

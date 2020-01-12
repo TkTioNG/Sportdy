@@ -65,4 +65,7 @@
     <string name="slash">/</string>
     <string name="capacity">Capacity : </string>
     <string name="share">Share Game</string>
+    <string name="url_server">https://sportdy.000webhostapp.com/api/</string>
+    <string name="url_sport_game_read">sportGame/read.php</string>
+    <string name="url_sport_game_create">sportGame/create.php</string>
 </resources>

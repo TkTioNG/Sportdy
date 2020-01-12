@@ -9,25 +9,28 @@ interface SportGameDao {
     @Insert
     suspend fun insert(game: SportGame)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(sportGames: List<SportGame>)
+
     @Update
     suspend fun update(game: SportGame)
 
     @Delete
     suspend fun delete(game: SportGame)
 
-    @Query("SELECT * FROM SportGame")
+    @Query("SELECT * FROM SportGame ORDER BY gameID DESC")
     fun getAll(): LiveData<List<SportGame>>
 
     @Query("SELECT * FROM SportGame WHERE gameID = :search_game_id")
     fun getOne(search_game_id:Int): LiveData<List<SportGame>>
 
-    @Query("SELECT * FROM SportGame WHERE (hosterName = :search_hoster_name OR nowppl > 1) AND gamedate >= :today_date")
+    @Query("SELECT * FROM SportGame WHERE (hosterName = :search_hoster_name OR nowppl > 1) AND gamedate >= :today_date ORDER BY gameID DESC")
     fun getFrom(search_hoster_name:String, today_date:Long): LiveData<List<SportGame>>
 
-    @Query("SELECT * FROM SportGame WHERE hosterName != :search_hoster_name AND gamedate >= :today_date AND nowppl <= 1")
+    @Query("SELECT * FROM SportGame WHERE hosterName != :search_hoster_name AND gamedate >= :today_date AND nowppl <= 1 ORDER BY gameID DESC")
     fun getNotFrom(search_hoster_name:String, today_date:Long): LiveData<List<SportGame>>
 
-    @Query("SELECT * FROM SportGame WHERE gamedate < :today_date")
+    @Query("SELECT * FROM SportGame WHERE gamedate < :today_date ORDER BY gameID DESC")
     fun gethistory(today_date:Long): LiveData<List<SportGame>>
 
     @Query("DELETE FROM SportGame WHERE gameID = :game_id")

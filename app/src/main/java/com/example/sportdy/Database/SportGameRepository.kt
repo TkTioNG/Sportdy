@@ -12,6 +12,10 @@ class SportGameRepository(private val sportGameDao: SportGameDao) {
         sportGameDao.insert(sportGame)
     }
 
+    suspend fun syncSportGame(sportGames: List<SportGame>) {
+        sportGameDao.insertAll(sportGames)
+    }
+
     suspend fun deleteSportGame(gameID: Int) {
         sportGameDao.deleteOne(gameID)
     }
