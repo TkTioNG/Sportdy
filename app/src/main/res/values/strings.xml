@@ -68,4 +68,6 @@
     <string name="url_server">https://sportdy.000webhostapp.com/api/</string>
     <string name="url_sport_game_read">sportGame/read.php</string>
     <string name="url_sport_game_create">sportGame/create.php</string>
+    <string name="url_sport_game_update">sportGame/update.php</string>
+    <string name="url_sport_game_delete">sportGame/delete.php</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.sportdy.Database
 
+import android.app.Activity
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -55,4 +56,5 @@ class SportGameViewModel(application: Application): AndroidViewModel(application
     fun unjoinGame(gameID: Int) = viewModelScope.launch {
         repository.unjoinGame(gameID)
     }
+
 }
