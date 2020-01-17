@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity(), DrawerLocker {
             editor.apply()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            
+
         }else{
             return super.onOptionsItemSelected(item)
         }

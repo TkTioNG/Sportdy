@@ -2,6 +2,8 @@ package com.example.sportdy.Database
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -26,7 +28,9 @@ class SportGameViewModel(application: Application): AndroidViewModel(application
 
     init {
         val sportGameDao = SportGameDatabase.getInstance(application).sportGameDao()
-        repository = SportGameRepository(sportGameDao)
+        val sharedPreferences: SharedPreferences = application.getSharedPreferences("users", Context.MODE_PRIVATE)
+        val hoster_name = sharedPreferences.getString("name_key","name")!!
+        repository = SportGameRepository(sportGameDao, hoster_name)
         allSportGames = repository.allSportGames
         userSportGames = repository.userSportGames
         othersSportGames = repository.othersSportGames

@@ -1,11 +1,14 @@
 package com.example.sportdy.Database
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 
-class SportGameRepository(private val sportGameDao: SportGameDao) {
+class SportGameRepository(private val sportGameDao: SportGameDao, private val hoster_name: String) {
+
     val allSportGames: LiveData<List<SportGame>> = sportGameDao.getAll()
-    val userSportGames: LiveData<List<SportGame>> = sportGameDao.getFrom("TkTioNG",System.currentTimeMillis())
-    val othersSportGames: LiveData<List<SportGame>> = sportGameDao.getNotFrom("TkTioNG",System.currentTimeMillis())
+    val userSportGames: LiveData<List<SportGame>> = sportGameDao.getFrom(hoster_name,System.currentTimeMillis())
+    val othersSportGames: LiveData<List<SportGame>> = sportGameDao.getNotFrom(hoster_name,System.currentTimeMillis())
     val historySportGames: LiveData<List<SportGame>> = sportGameDao.gethistory(System.currentTimeMillis())
 
     suspend fun insertSportGame(sportGame: SportGame) {
