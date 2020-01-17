@@ -53,4 +53,5 @@
             android:id="@+id/action_testingFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
+
 </navigation>

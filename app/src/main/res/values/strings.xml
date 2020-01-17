@@ -65,4 +65,24 @@
     <string name="slash">/</string>
     <string name="capacity">Capacity : </string>
     <string name="share">Share Game</string>
+
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="register">Sign up</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="register2">Register</string>
+    <string name="logout">Log Out</string>
+
+    <string name="url_server">https://sportdy.000webhostapp.com/api/</string>
+    <string name="url_sport_game_read">sportGame/read.php</string>
+    <string name="url_sport_game_create">sportGame/create.php</string>
+    <string name="url_sport_game_update">sportGame/update.php</string>
+    <string name="url_sport_game_delete">sportGame/delete.php</string>
+    <string name="url_Users_read">Users/read.php</string>
+    <string name="url_Users_create">Users/create.php</string>
+    <string name="url_Users_update">Users/update.php</string>
+    <string name="url_Users_delete">Users/delete.php</string>
 </resources>
