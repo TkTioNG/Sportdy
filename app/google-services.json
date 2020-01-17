@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "844327022558",
+    "firebase_url": "https://sportdy-45822.firebaseio.com",
+    "project_id": "sportdy-45822",
+    "storage_bucket": "sportdy-45822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844327022558:android:14f80d8872372f9153774f",
+        "android_client_info": {
+          "package_name": "com.example.sportdy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844327022558-6m4s39pjder83kmgi1di6ck9grgj7j18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sportdy",
+            "certificate_hash": "f1e77d9c5a30e8871ff40e65dcbd71254e300417"
+          }
+        },
+        {
+          "client_id": "844327022558-d4f65d8bml1th08824dc0n09a5sid04u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYexRSZla6lIMWxWW8dq6_i7jfiZgyd6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844327022558-d4f65d8bml1th08824dc0n09a5sid04u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -82,6 +82,7 @@
     <string name="url_sport_game_update">sportGame/update.php</string>
     <string name="url_sport_game_delete">sportGame/delete.php</string>
     <string name="url_Users_read">Users/read.php</string>
+    <string name="url_Users_read_one">Users/read_one.php</string>
     <string name="url_Users_create">Users/create.php</string>
     <string name="url_Users_update">Users/update.php</string>
     <string name="url_Users_delete">Users/delete.php</string>
