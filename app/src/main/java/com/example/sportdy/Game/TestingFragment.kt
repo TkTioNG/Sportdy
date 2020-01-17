@@ -4,6 +4,7 @@ package com.example.sportdy.Game
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
@@ -15,6 +16,11 @@ import com.example.sportdy.R
 import com.example.sportdy.DrawerLocker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportdy.App
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
 import com.example.sportdy.Game.GameFragment.Companion.EDIT_GAME_REQUEST_CODE
@@ -22,6 +28,9 @@ import com.example.sportdy.Game.GameFragment.Companion.FROM_FIND_GAME_FRAGMENT
 import com.example.sportdy.Game.GameFragment.Companion.FROM_HISTORY_FRAGMENT
 import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
 import com.google.android.material.snackbar.Snackbar
+import org.json.JSONArray
+import org.json.JSONObject
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import kotlin.random.Random
 
@@ -222,7 +231,12 @@ class TestingFragment() : Fragment() {
     private fun onRemoveGame(): View.OnClickListener {
         return View.OnClickListener {
             gameID = tvGDGameID.text.toString().toInt()
+
+            onWebSportGameDelete(gameID)
+
             sportGameViewModel.deleteSportGame(gameID)
+
+            checkSync()
 
             Snackbar.make(this.view!!, "You have deleted one record", Snackbar.LENGTH_LONG).setAction("Undo", View.OnClickListener {
                 fun onClick(view: View) {
@@ -236,6 +250,71 @@ class TestingFragment() : Fragment() {
 
             activity!!.onBackPressed()
         }
+    }
+
+    fun checkSync() {
+        val url = App.context!!.resources.getString(R.string.url_server) + App.context!!.resources.getString(R.string.url_sport_game_read)
+        Log.d("Main", url)
+        var sportGames: ArrayList<SportGame> = ArrayList<SportGame>()
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                // Process the JSON
+                try {
+                    if (response != null) {
+                        val strResponse = response.toString()
+                        val jsonResponse = JSONObject(strResponse)
+                        val jsonArray: JSONArray = jsonResponse.getJSONArray("records")
+                        val size: Int = jsonArray.length()
+                        for (i in 0..size - 1) {
+                            var jsonSG: JSONObject = jsonArray.getJSONObject(i)
+                            var sportGame: SportGame = SportGame(
+                                jsonSG.getInt("gameid"),
+                                jsonSG.getString("gamename"),
+                                jsonSG.getString("gametype"),
+                                jsonSG.getLong("gamedate"),
+                                jsonSG.getInt("gametime"),
+                                jsonSG.getString("location"),
+                                jsonSG.getString("street1"),
+                                jsonSG.getString("street2"),
+                                jsonSG.getString("area"),
+                                jsonSG.getInt("postcode"),
+                                jsonSG.getString("state"),
+                                jsonSG.getInt("maxppl"),
+                                jsonSG.getInt("nowppl"),
+                                jsonSG.getString("description"),
+                                jsonSG.getString("hostername")
+                            )
+
+                            //var user: User = User(jsonUser.getString("name"), jsonUser.getString("contact"))
+                            sportGames.add(sportGame)
+                            //userList.add(user)
+                        }
+                        sportGameViewModel.syncSportGame(sportGames)
+                        Log.d("Main", "Response-ReadGood: %d".format(size))
+                    }
+                    else {
+                        Log.d("Main", "Response-Read: wow")
+                    }
+                } catch (e: Exception) {
+                    Log.d("Main", "Response-Read1: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("Main", "Response-Reaad2: %s".format(error.message.toString()))
+            }
+        )
+
+        //Volley request policy, only one time request
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            0, //no retry
+            1f
+        )
+
+        // Access the RequestQueue through your singleton class.
+        GameSingleton.getInstance(activity!!.applicationContext).addToRequestQueue(jsonObjectRequest)
     }
 
     private fun onJoinGame(): View.OnClickListener {
@@ -291,10 +370,11 @@ class TestingFragment() : Fragment() {
                 val _game_postcode = data?.getIntExtra(AddGameActivity.ADD_GAME_POSTCODE, 53300)
                 val _game_state = data?.getStringExtra(AddGameActivity.ADD_GAME_STATE)
                 val _game_maxppl = data?.getIntExtra(AddGameActivity.ADD_GAME_MAXPPL, 20)
-                val _game_nowppl = data?.getIntExtra(AddGameActivity.ADD_GAME_NOWPPL, 1)
                 val _game_desc = data?.getStringExtra(AddGameActivity.ADD_GAME_DESC)
 
                 sportGameViewModel.updateSportGame(gameID, _game_name!!, _game_type!!, _game_date!!, _game_time!!, _game_location!!, _game_street1!!, _game_street2!!, _game_area!!, _game_postcode!!, _game_state!!, _game_maxppl!!, _game_desc!!)
+
+                onWebSportGameUpdate(gameID, _game_name!!, _game_type!!, _game_date!!, _game_time!!, _game_location!!, _game_street1!!, _game_street2!!, _game_area!!, _game_postcode!!, _game_state!!, _game_maxppl!!, _game_desc!!)
 
                 tvGDGameName.text = _game_name
                 tvGDGameDate.text = SimpleDateFormat("dd MMM yyyy").format(_game_date)
@@ -315,13 +395,105 @@ class TestingFragment() : Fragment() {
                 tvGDMaxPpl.text = _game_maxppl.toString()
                 tvGDDesc.text = _game_desc
 
-
-
                 Toast.makeText(activity!!.applicationContext, "You have update sport game.", Toast.LENGTH_SHORT).show()
 
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun onWebSportGameUpdate(gameid: Int, gamename: String, gametype: String, gamedate: Long, gametime: Int, location: String, street1: String, street2: String, area: String, postcode: Int, state: String, maxppl: Int, desc: String) {
+        val url = getString(R.string.url_server) + getString(R.string.url_sport_game_update) +
+                "?gamename=" + gamename + "&gametype=" + gametype + "&gamedate=" + gamedate +
+                "&gametime=" + gametime + "&location=" + location + "&street1=" + street1 +
+                "&street2=" + street2 + "&area=" + area + "&postcode=" + postcode +
+                "&state=" + state + "&maxppl=" + maxppl +
+                "&description=" + desc + "&gameid=" + gameid
+
+        Log.i("Main",url)
+        //+ "?name=" + user.name + "&contact=" + user.contact
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                // Process the JSON
+                try{
+                    if(response != null){
+                        val strResponse = response.toString()
+                        val jsonResponse  = JSONObject(strResponse)
+                        val success: String = jsonResponse.get("success").toString()
+
+                        if(success.equals("1")){
+                            Toast.makeText(activity!!.applicationContext, "Sport game is updated.", Toast.LENGTH_LONG).show()
+                            //Add record to user list
+                            //userList.add(user)
+                        }else{
+                            Toast.makeText(activity!!.applicationContext, "Sport game is not updated.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }catch (e: Exception){
+                    Log.d("Main", "Response-1: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("Main", "Response-2: %s".format(error.message.toString()))
+            }
+        )
+
+        //Volley request policy, only one time request
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            0, //no retry
+            1f
+        )
+
+        // Access the RequestQueue through your singleton class.
+        GameSingleton.getInstance(activity!!.applicationContext).addToRequestQueue(jsonObjectRequest)
+    }
+
+    private fun onWebSportGameDelete(gameid: Int) {
+        val url = getString(R.string.url_server) + getString(R.string.url_sport_game_delete) +
+                "?gameid=" + gameid
+
+        Log.i("Main",url)
+        //+ "?name=" + user.name + "&contact=" + user.contact
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                // Process the JSON
+                try{
+                    if(response != null){
+                        val strResponse = response.toString()
+                        val jsonResponse  = JSONObject(strResponse)
+                        val success: String = jsonResponse.get("success").toString()
+
+                        if(success.equals("1")){
+                            Toast.makeText(activity!!.applicationContext, "Sport game is deleted.", Toast.LENGTH_LONG).show()
+                            //Add record to user list
+                            //userList.add(user)
+                        }else{
+                            Toast.makeText(activity!!.applicationContext, "Sport game is not deleted.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }catch (e: Exception){
+                    Log.d("Main", "Response-1: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("Main", "Response-2: %s".format(error.message.toString()))
+            }
+        )
+
+        //Volley request policy, only one time request
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            0, //no retry
+            1f
+        )
+
+        // Access the RequestQueue through your singleton class.
+        GameSingleton.getInstance(activity!!.applicationContext).addToRequestQueue(jsonObjectRequest)
     }
 
     private fun getGameTypeImage(gameType: String): Int {

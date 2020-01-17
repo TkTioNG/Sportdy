@@ -18,11 +18,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.sportdy.MainActivity
 import com.example.sportdy.R
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import org.json.JSONArray
 import org.json.JSONObject
 
 
@@ -145,7 +140,7 @@ class LoginActivity : AppCompatActivity() {
             valid = false
         }
         if (!password.text.isNotEmpty()) {
-            password.error = "Incorrect Password"
+            password.error = "Password is Required"
             valid = false
         }
 

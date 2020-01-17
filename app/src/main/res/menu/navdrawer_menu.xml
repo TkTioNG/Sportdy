@@ -23,7 +23,7 @@
         android:id="@+id/helpFragment"
         android:title="@string/help" />
     <item
-        android:id="@+id/logoutId"
+        android:id="@+id/loginActivity"
         android:title="@string/logout" />
 
 </menu>

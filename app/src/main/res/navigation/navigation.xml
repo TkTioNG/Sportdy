@@ -53,5 +53,10 @@
             android:id="@+id/action_testingFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.sportdy.Login.LoginActivity"
+        android:label="Logout"
+        tools:layout="@layout/activity_login" />
 
 </navigation>

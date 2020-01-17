@@ -18,6 +18,10 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.sportdy.Database.SportGame
 import com.example.sportdy.Database.SportGameViewModel
 import com.example.sportdy.Game.GameFragment.Companion.ADD_GAME_REQUEST_CODE
@@ -26,6 +30,7 @@ import com.example.sportdy.Game.GameFragment.Companion.FROM_MY_GAME_FRAGMENT
 import com.example.sportdy.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_my_game.*
+import org.json.JSONObject
 import java.lang.Exception
 
 /**
@@ -75,6 +80,56 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
         return view
     }
 
+    private fun createSportGame(sportGame: SportGame) {
+        val url = getString(R.string.url_server) + getString(R.string.url_sport_game_create) +
+                "?gamename=" + sportGame.gameName + "&gametype=" + sportGame.gameType + "&gamedate=" + sportGame.gameDate +
+                "&gametime=" + sportGame.gameTime + "&location=" + sportGame.location + "&street1=" + sportGame.street1 +
+                "&street2=" + sportGame.street2 + "&area=" + sportGame.area + "&postcode=" + sportGame.postcode +
+                "&state=" + sportGame.state + "&maxppl=" + sportGame.maxppl + "&nowppl=" + sportGame.nowppl +
+                "&description=" + sportGame.description + "&hostername=" + sportGame.hosterName
+
+        Log.i("Main",url)
+        //+ "?name=" + user.name + "&contact=" + user.contact
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                // Process the JSON
+                try{
+                    if(response != null){
+                        val strResponse = response.toString()
+                        val jsonResponse  = JSONObject(strResponse)
+                        val success: String = jsonResponse.get("success").toString()
+
+                        if(success.equals("1")){
+                            Toast.makeText(activity!!.applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+                            //Add record to user list
+                            //userList.add(user)
+                        }else{
+                            Toast.makeText(activity!!.applicationContext, "Record not saved", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }catch (e:Exception){
+                    Log.d("Main", "Response-1: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("Main", "Response-2: %s".format(error.message.toString()))
+            }
+        )
+
+        //Volley request policy, only one time request
+        jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            0, //no retry
+            1f
+        )
+
+        // Access the RequestQueue through your singleton class.
+        GameSingleton.getInstance(activity!!.applicationContext).addToRequestQueue(jsonObjectRequest)
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ADD_GAME_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
@@ -101,6 +156,7 @@ class MyGameFragment : Fragment(), GameAdapter.OnGameClickListener {
                         maxppl = _game_maxppl!!, nowppl = _game_nowppl!!, description = _game_desc!!, hosterName = _game_hostername!!)
 
                     sportGameViewModel.insertSportGame(sportGame)
+                    createSportGame(sportGame)
 
                     Toast.makeText(activity!!.applicationContext, "You have add new sport game.", Toast.LENGTH_SHORT).show()
 
